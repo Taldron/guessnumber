@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess Game</title>
+    <style>
+        body{margin: 0; padding: 0}
+        .main{margin: 0 auto; background: #f3f3f3; width: 500px; height: 365px; border-radius: 0 0 20px 20px}
+        #guessbox{width: 50px; height: 30px; margin: 150px 45% 0 45%; font: bold 15px Arial; text-align: center}
+        #guess{width: 75px ; height: 25px; background: #6bff77; color: white; border: 0 solid; margin: 5px 41% 5px 43%}
+        #guess:active{background: #53ff52}
+        #state{margin: 0 auto; background: #5041ff; color: white; font: bold 13px Arial; text-align: center; height: 19px; padding-top: 6px; border-radius: 0 0 5px 5px}
+        #lastguess{margin: 50px auto 0 auto; color: white; font: bold 13px Arial; text-align: center; padding-top: 6px; font: bold 55px Arial}
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <p id="state"></p>
+    <p id="lastguess">0</p>
+    <input type="text" id="guessbox" placeholder="Guess" maxlength="2">
+    <input type="button" id="guess" value="Guess" onclick="control()">
+
+    <script>
+        rnumber = Math.floor(Math.random()*50)+1;
+        function control(){
+            value = document.getElementById("guessbox").value;
+
+            if (value > 50 || value<1){
+                alert("Enter a number between 1 and 50.");
+            }
+
+            else if (value == rnumber) {
+                alert("Right guess!");
+                document.getElementById("lastguess").innerHTML = value;
+                document.getElementById("guess").disabled = true;
+            }
+
+            else if (value < rnumber){
+                document.getElementById("state").innerHTML = "Enter a larger number.";
+                document.getElementById("lastguess").innerHTML = value;
+                value = document.getElementById("guessbox").value = "";
+            }
+
+            else if(value > rnumber){
+                document.getElementById("state").innerHTML = "Enter a smaller number.";
+                document.getElementById("lastguess").innerHTML = value;
+                value = document.getElementById("guessbox").value = "";
+            }
+
+            else{alert("Please enter a number.")}
+
+        }
+
+    </script>
+</div>
+</body>
+</html>
